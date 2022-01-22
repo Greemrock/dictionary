@@ -77,7 +77,7 @@ export const HomePage: React.FC = () => {
           <SearchIcon />
         </LoadingButton>
       </Paper>
-      <Collapse sx={{ position: 'absolute', width: '400px' }} in={isEmptyInput}>
+      <Collapse sx={{ position: 'absolute', width: '400px', left: '-200px' }} in={isEmptyInput}>
         <Alert
           action={
             <IconButton
