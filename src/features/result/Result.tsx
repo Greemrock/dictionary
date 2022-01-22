@@ -9,16 +9,20 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../app/hooks';
-import { selectDescription } from '../home/homeSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { defenitionAsync, selectDescription } from '../home/homeSlice';
 
 export const ResultPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const dispatch = useAppDispatch();
   const { definitions } = useAppSelector(selectDescription);
   const [urlSound, setUrlSound] = useState('');
+  const queryParam = getQueryParam();
 
   const play = (url: string) => {
     const audio = new Audio(url);
@@ -33,6 +37,18 @@ export const ResultPage: React.FC = () => {
     setUrlSound(urlSound);
     play(url);
   };
+
+  function getQueryParam() {
+    const sp = new URLSearchParams(location.search);
+    const param = sp.get('word');
+    return param;
+  }
+
+  useEffect(() => {
+    if (!definitions[0].word && queryParam) {
+      dispatch(defenitionAsync(queryParam));
+    }
+  }, [queryParam]);
 
   return (
     <Container sx={{ marginTop: '60px', marginBottom: '60px' }}>
@@ -60,9 +76,11 @@ export const ResultPage: React.FC = () => {
                   <PlayCircleFilledWhiteOutlinedIcon />
                 </IconButton>
               )}
-              <Typography>
-                <b>transcription:</b> [{phonetics[0].text}]
-              </Typography>
+              {phonetics[0].text && (
+                <Typography>
+                  <b>transcription:</b> [{phonetics[0].text}]
+                </Typography>
+              )}
               {meanings.map((meaning, i) => {
                 return (
                   <div key={i}>

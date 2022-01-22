@@ -20,17 +20,17 @@ export const PageNotFound: React.FC = () => {
 
   return (
     <Layout>
-      <Typography>No Definitions Found</Typography>
+      <Typography variant="h5">No Definitions Found</Typography>
       <br />
-      <Typography>
+      <Typography variant="h5">
         Sorry pal, we couldnt find definitions for the word you were looking for.
       </Typography>
       <br />
-      <Typography>
+      <Typography variant="h5">
         You can try the search again at later time or head to the web instead.
       </Typography>
       <br />
-      <Button variant="contained" onClick={handleClick}>
+      <Button variant="contained" onClick={handleClick} sx={{ marginTop: '60px' }}>
         Return to back
       </Button>
     </Layout>

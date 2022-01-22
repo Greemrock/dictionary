@@ -4,14 +4,12 @@ import { RootState } from '../../app/store';
 import { fetchDefinition } from './homeAPI';
 
 export interface HomeState {
-  word: string;
   definitions: Definition[];
   isLoading: boolean;
   error: boolean;
 }
 
 const initialState: HomeState = {
-  word: '',
   definitions: [],
   isLoading: false,
   error: false,
