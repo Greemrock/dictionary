@@ -42,17 +42,16 @@ export const HomePage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (isSend && !isLoading) {
-      navigate({
-        pathname: '/result',
-        search: `?word=${word}`,
-      });
+    if (isSend && !isLoading && !error) {
+      navigate(word);
     }
+  }, [isSend, isLoading, error]);
 
+  useEffect(() => {
     if (error) {
       navigate('/404');
     }
-  }, [isSend, isLoading, error]);
+  }, [error]);
 
   return (
     <Layout>
