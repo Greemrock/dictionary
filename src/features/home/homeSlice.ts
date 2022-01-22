@@ -6,20 +6,19 @@ import { fetchDefinition } from './homeAPI';
 export interface HomeState {
   word: string;
   definitions: Definition[];
-  loading: boolean;
+  isLoading: boolean;
   error: boolean;
 }
 
 const initialState: HomeState = {
   word: '',
   definitions: [],
-  loading: false,
+  isLoading: false,
   error: false,
 };
 
 export const defenitionAsync = createAsyncThunk('fetchDefinition', async (word: string) => {
   const response = await fetchDefinition(word);
-  console.log(response.data);
   return response.data;
 });
 
@@ -33,14 +32,14 @@ export const homeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(defenitionAsync.pending, (state) => {
-      state.loading = true;
+      state.isLoading = true;
     });
     builder.addCase(defenitionAsync.fulfilled, (state, action) => {
-      state.loading = false;
+      state.isLoading = false;
       state.definitions = action.payload;
     });
     builder.addCase(defenitionAsync.rejected, (state) => {
-      state.loading = false;
+      state.isLoading = false;
       state.error = true;
     });
   },

@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,9 @@ export const PageNotFound: React.FC = () => {
         You can try the search again at later time or head to the web instead.
       </Typography>
       <br />
-      <button onClick={handleClick}>Return to back</button>
+      <Button variant="contained" onClick={handleClick}>
+        Return to back
+      </Button>
     </Layout>
   );
 };

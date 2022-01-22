@@ -9,7 +9,7 @@ import { Loader } from '../../common/Loader';
 import { defenitionAsync, selectDescription } from './homeSlice';
 
 export const HomePage: React.FC = () => {
-  const { loading, error } = useAppSelector(selectDescription);
+  const { isLoading, error } = useAppSelector(selectDescription);
   const dispatch = useAppDispatch();
 
   const [word, setWord] = useState('');
@@ -27,18 +27,18 @@ export const HomePage: React.FC = () => {
   };
 
   useEffect(() => {
-    if (isSend && !loading) {
+    if (isSend && !isLoading) {
       navigate('/result');
     }
 
     if (error) {
       navigate('/404');
     }
-  }, [isSend, loading, error]);
+  }, [isSend, isLoading, error]);
 
   return (
     <Layout>
-      {loading && <Loader />}
+      {isLoading && <Loader />}
       <Paper
         onSubmit={handleClick}
         component="form"

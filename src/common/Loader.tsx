@@ -6,7 +6,7 @@ import { useAppSelector } from '../app/hooks';
 import { selectDescription } from '../features/home/homeSlice';
 
 export const Loader: React.FC = () => {
-  const { loading } = useAppSelector(selectDescription);
+  const { isLoading } = useAppSelector(selectDescription);
 
   return (
     <Container
@@ -21,7 +21,7 @@ export const Loader: React.FC = () => {
         backgroundColor: '#0000004d',
       }}
     >
-      <ClipLoader loading={loading} size={150} />
+      <ClipLoader loading={isLoading} size={150} />
     </Container>
   );
 };
