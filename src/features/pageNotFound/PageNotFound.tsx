@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { Layout } from '../../common/Layout';
-import { setError } from '../home/homeSlice';
+import { setIsError } from '../home/homeSlice';
 
 export const PageNotFound: React.FC = () => {
   const navigate = useNavigate();
@@ -15,18 +15,18 @@ export const PageNotFound: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(setError(false));
+    dispatch(setIsError(false));
   });
 
   return (
     <Layout>
       <Typography variant="h5">No Definitions Found</Typography>
       <br />
-      <Typography variant="h5">
+      <Typography variant="subtitle1">
         Sorry pal, we couldnt find definitions for the word you were looking for.
       </Typography>
       <br />
-      <Typography variant="h5">
+      <Typography variant="subtitle1">
         You can try the search again at later time or head to the web instead.
       </Typography>
       <br />

@@ -20,11 +20,11 @@ export const defenitionAsync = createAsyncThunk('fetchDefinition', async (word: 
   return response.data;
 });
 
-export const homeSlice = createSlice({
-  name: 'home',
+export const defenitionSlice = createSlice({
+  name: 'description',
   initialState,
   reducers: {
-    setError: (state, action) => {
+    setIsError: (state, action) => {
       state.error = action.payload;
     },
   },
@@ -43,8 +43,8 @@ export const homeSlice = createSlice({
   },
 });
 
-export const { setError } = homeSlice.actions;
+export const { setIsError } = defenitionSlice.actions;
 
 export const selectDescription = (state: RootState) => state.description;
 
-export default homeSlice.reducer;
+export default defenitionSlice.reducer;
